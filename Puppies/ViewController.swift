@@ -8,18 +8,69 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+let puppyReuseID = "puppyReuseID"
 
+class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+
+    var model: [Gif] = []
+    
+    override init() {
+        let flowLayout = KTCenterFlowLayout()
+        flowLayout.minimumInteritemSpacing = 0
+        flowLayout.minimumLineSpacing = 0
+        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        super.init(collectionViewLayout: flowLayout)
+    }
+
+    required convenience init(coder aDecoder: NSCoder) {
+        self.init()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        collectionView.registerClass(PuppyCell.self, forCellWithReuseIdentifier: puppyReuseID)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        NSURLSession.sharedSession().dataTaskWithURL(NSURL(string:"http://api.giphy.com/v1/gifs/search?q=puppy&api_key=dc6zaTOxFJmzC")!) {
+            (data, response, error) in
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+            let gifs = Gif.gifsWithData(data)
+            for gif in gifs {
+                if let typedGif = gif as? Gif {
+                    self.model.append(typedGif)
+                }
+            }
+            self.collectionView.reloadData()
+        }.resume()
+    }
+    
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(puppyReuseID, forIndexPath: indexPath) as PuppyCell
+        cell.gif = model[indexPath.row]
+        return cell
+    }
+    
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return model.count
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
     }
-
-
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        
+        let scale = UIScreen.mainScreen().scale
+        let gif = model[indexPath.item]
+        return CGSize(width: gif.width / scale, height: gif.height / scale)
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
 }
-

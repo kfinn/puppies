@@ -9,10 +9,12 @@
 /* Begin PBXBuildFile section */
 		DCD1E1D61A18E0850006687A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD1E1D51A18E0850006687A /* AppDelegate.swift */; };
 		DCD1E1D81A18E0850006687A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD1E1D71A18E0850006687A /* ViewController.swift */; };
-		DCD1E1DB1A18E0860006687A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCD1E1D91A18E0860006687A /* Main.storyboard */; };
 		DCD1E1DD1A18E0860006687A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCD1E1DC1A18E0860006687A /* Images.xcassets */; };
 		DCD1E1E01A18E0860006687A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCD1E1DE1A18E0860006687A /* LaunchScreen.xib */; };
 		DCD1E1EC1A18E0860006687A /* PuppiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD1E1EB1A18E0860006687A /* PuppiesTests.swift */; };
+		DCD1E1F71A18E6A80006687A /* PuppyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD1E1F61A18E6A80006687A /* PuppyCell.swift */; };
+		DCD1E1FB1A18E6FB0006687A /* Gif.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD1E1FA1A18E6FB0006687A /* Gif.m */; };
+		E9836CFA7BB1FB14A77304BE /* libPods-Puppies.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 886FDE99FF610E7B8BF449F4 /* libPods-Puppies.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,16 +28,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		87007B1F59AE2F5253B16AF8 /* Pods-Puppies.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Puppies.release.xcconfig"; path = "Pods/Target Support Files/Pods-Puppies/Pods-Puppies.release.xcconfig"; sourceTree = "<group>"; };
+		886FDE99FF610E7B8BF449F4 /* libPods-Puppies.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Puppies.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7010F6FB0A9237DBE046486 /* Pods-Puppies.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Puppies.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Puppies/Pods-Puppies.debug.xcconfig"; sourceTree = "<group>"; };
 		DCD1E1D01A18E0850006687A /* Puppies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Puppies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCD1E1D41A18E0850006687A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCD1E1D51A18E0850006687A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCD1E1D71A18E0850006687A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		DCD1E1DA1A18E0860006687A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DCD1E1DC1A18E0860006687A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DCD1E1DF1A18E0860006687A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		DCD1E1E51A18E0860006687A /* PuppiesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PuppiesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCD1E1EA1A18E0860006687A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCD1E1EB1A18E0860006687A /* PuppiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuppiesTests.swift; sourceTree = "<group>"; };
+		DCD1E1F61A18E6A80006687A /* PuppyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PuppyCell.swift; sourceTree = "<group>"; };
+		DCD1E1F81A18E6FA0006687A /* Puppies-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Puppies-Bridging-Header.h"; sourceTree = "<group>"; };
+		DCD1E1F91A18E6FB0006687A /* Gif.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gif.h; sourceTree = "<group>"; };
+		DCD1E1FA1A18E6FB0006687A /* Gif.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gif.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9836CFA7BB1FB14A77304BE /* libPods-Puppies.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,12 +65,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		106C9BACC87A407343BA0382 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				886FDE99FF610E7B8BF449F4 /* libPods-Puppies.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DCD1E1C71A18E0850006687A = {
 			isa = PBXGroup;
 			children = (
 				DCD1E1D21A18E0850006687A /* Puppies */,
 				DCD1E1E81A18E0860006687A /* PuppiesTests */,
 				DCD1E1D11A18E0850006687A /* Products */,
+				FA919804A2884EA1DF557E52 /* Pods */,
+				106C9BACC87A407343BA0382 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,10 +98,13 @@
 			children = (
 				DCD1E1D51A18E0850006687A /* AppDelegate.swift */,
 				DCD1E1D71A18E0850006687A /* ViewController.swift */,
-				DCD1E1D91A18E0860006687A /* Main.storyboard */,
+				DCD1E1F61A18E6A80006687A /* PuppyCell.swift */,
 				DCD1E1DC1A18E0860006687A /* Images.xcassets */,
 				DCD1E1DE1A18E0860006687A /* LaunchScreen.xib */,
 				DCD1E1D31A18E0850006687A /* Supporting Files */,
+				DCD1E1F91A18E6FB0006687A /* Gif.h */,
+				DCD1E1FA1A18E6FB0006687A /* Gif.m */,
+				DCD1E1F81A18E6FA0006687A /* Puppies-Bridging-Header.h */,
 			);
 			path = Puppies;
 			sourceTree = "<group>";
@@ -112,6 +134,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		FA919804A2884EA1DF557E52 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B7010F6FB0A9237DBE046486 /* Pods-Puppies.debug.xcconfig */,
+				87007B1F59AE2F5253B16AF8 /* Pods-Puppies.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -119,9 +150,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DCD1E1EF1A18E0860006687A /* Build configuration list for PBXNativeTarget "Puppies" */;
 			buildPhases = (
+				B5325A43728026DD1FC9415D /* Check Pods Manifest.lock */,
 				DCD1E1CC1A18E0850006687A /* Sources */,
 				DCD1E1CD1A18E0850006687A /* Frameworks */,
 				DCD1E1CE1A18E0850006687A /* Resources */,
+				5AE9EB1756FD96EADF1ACB25 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -161,6 +194,7 @@
 				TargetAttributes = {
 					DCD1E1CF1A18E0850006687A = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = JGJC2NGW6L;
 					};
 					DCD1E1E41A18E0860006687A = {
 						CreatedOnToolsVersion = 6.1;
@@ -192,7 +226,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCD1E1DB1A18E0860006687A /* Main.storyboard in Resources */,
 				DCD1E1E01A18E0860006687A /* LaunchScreen.xib in Resources */,
 				DCD1E1DD1A18E0860006687A /* Images.xcassets in Resources */,
 			);
@@ -207,12 +240,47 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5AE9EB1756FD96EADF1ACB25 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Puppies/Pods-Puppies-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B5325A43728026DD1FC9415D /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		DCD1E1CC1A18E0850006687A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCD1E1F71A18E6A80006687A /* PuppyCell.swift in Sources */,
 				DCD1E1D81A18E0850006687A /* ViewController.swift in Sources */,
+				DCD1E1FB1A18E6FB0006687A /* Gif.m in Sources */,
 				DCD1E1D61A18E0850006687A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -236,14 +304,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		DCD1E1D91A18E0860006687A /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DCD1E1DA1A18E0860006687A /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		DCD1E1DE1A18E0860006687A /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -336,21 +396,34 @@
 		};
 		DCD1E1F01A18E0860006687A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B7010F6FB0A9237DBE046486 /* Pods-Puppies.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Puppies/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Puppies/Puppies-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		DCD1E1F11A18E0860006687A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 87007B1F59AE2F5253B16AF8 /* Pods-Puppies.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Puppies/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Puppies/Puppies-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -407,6 +480,7 @@
 				DCD1E1F11A18E0860006687A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DCD1E1F21A18E0860006687A /* Build configuration list for PBXNativeTarget "PuppiesTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +489,7 @@
 				DCD1E1F41A18E0860006687A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
