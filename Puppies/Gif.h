@@ -18,6 +18,4 @@
 @property (nonatomic) CGFloat width;
 @property (nonatomic) CGFloat height;
 
-+ (NSArray *)gifsWithData:(NSData *)data;
-
 @end

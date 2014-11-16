@@ -31,7 +31,7 @@ static NSString *const kURLTransformer = @"kURLTransformer";
 }
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    return @{@"url": @"images.fixed_width.url", @"width": @"images.fixed_width.width", @"height": @"images.fixed_width.height"};
+    return @{@"url": @"image_url", @"width": @"image_width", @"height": @"image_height"};
 }
 
 + (NSValueTransformer *)tagsJSONTransformer {

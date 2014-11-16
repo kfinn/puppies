@@ -9,10 +9,11 @@
 import UIKit
 
 let puppyReuseID = "puppyReuseID"
+private let columnWidth: CGFloat = 200.0
 
 class ViewController: UICollectionViewController, CHTCollectionViewDelegateWaterfallLayout {
 
-    var model: [Gif] = []
+    let gifStore = GifStore()
     
     override init() {
         let flowLayout = CHTCollectionViewWaterfallLayout()
@@ -20,8 +21,17 @@ class ViewController: UICollectionViewController, CHTCollectionViewDelegateWater
         flowLayout.minimumColumnSpacing = 0
         flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         super.init(collectionViewLayout: flowLayout)
-        
         navigationItem.title = "Puppies"
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"handleGifAdded:", name: GifStoreAddedGifNotification, object: gifStore)
+    }
+    
+    func handleGifAdded(notification: NSNotification) {
+        collectionView.reloadData()
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
     required convenience init(coder aDecoder: NSCoder) {
@@ -30,44 +40,30 @@ class ViewController: UICollectionViewController, CHTCollectionViewDelegateWater
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         collectionView.registerClass(PuppyCell.self, forCellWithReuseIdentifier: puppyReuseID)
-        
         self.navigationController?.scrollNavigationBar.scrollView = collectionView
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        NSURLSession.sharedSession().dataTaskWithURL(NSURL(string:"http://api.giphy.com/v1/gifs/search?q=puppy&api_key=dc6zaTOxFJmzC")!) {
-            (data, response, error) in
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-            let gifs = Gif.gifsWithData(data)
-            for gif in gifs {
-                if let typedGif = gif as? Gif {
-                    self.model.append(typedGif)
-                }
-            }
-            self.collectionView.reloadData()
-        }.resume()
+        if gifStore.gifs.isEmpty {
+            gifStore.preload()
+        }
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(puppyReuseID, forIndexPath: indexPath) as PuppyCell
-        cell.gif = model[indexPath.row]
+        cell.gif = gifStore.gifs[indexPath.item]
         return cell
     }
     
     func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: UICollectionViewLayout!, columnCountForSection section: Int) -> Int {
-        if let firstGif = model.first {
-            return Int(round(view.bounds.width / firstGif.width))
-        }
-        return 1
+        return Int(round(view.bounds.width / columnWidth))
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return model.count
+        return gifStore.gifs.count
     }
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -76,9 +72,8 @@ class ViewController: UICollectionViewController, CHTCollectionViewDelegateWater
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
-        let scale = UIScreen.mainScreen().scale
-        let gif = model[indexPath.item]
-        return CGSize(width: gif.width / scale, height: gif.height / scale)
+        let gif = gifStore.gifs[indexPath.item]
+        return CGSize(width: gif.width, height: gif.height)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
