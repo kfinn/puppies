@@ -8,12 +8,12 @@
 
 import UIKit
 
-let emptyAnimatedImage = FLAnimatedImage(animatedGIFData: NSData())
-
 class PuppyCell: UICollectionViewCell {
     
     var gif : Gif? {
         didSet {
+            self.gifView.animatedImage = nil;
+            self.gifView.image = UIImage(named: "puppy.jpg");
             if gif != nil {
                 let requestGif = gif
                 NSURLSession.sharedSession().dataTaskWithURL(requestGif!.url) {
@@ -22,8 +22,6 @@ class PuppyCell: UICollectionViewCell {
                         self.gifView.animatedImage = FLAnimatedImage(animatedGIFData: data)
                     }
                 }.resume()
-            } else {
-                self.gifView.animatedImage = emptyAnimatedImage;
             }
         }
     }

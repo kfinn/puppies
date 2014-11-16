@@ -12,7 +12,11 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let vc = ViewController()
+    let vc : UIViewController = {
+        let navigationController = UINavigationController(navigationBarClass: GTScrollNavigationBar.self, toolbarClass: nil)
+        navigationController.viewControllers = [ViewController()]
+        return navigationController
+    }()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
@@ -23,8 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = vc
         window?.userInteractionEnabled = true
         window?.makeKeyAndVisible()
-        
-        NSURLCache.setSharedURLCache(NSURLCache())
         
         return true
     }

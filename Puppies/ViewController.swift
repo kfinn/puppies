@@ -10,16 +10,18 @@ import UIKit
 
 let puppyReuseID = "puppyReuseID"
 
-class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class ViewController: UICollectionViewController, CHTCollectionViewDelegateWaterfallLayout {
 
     var model: [Gif] = []
     
     override init() {
-        let flowLayout = KTCenterFlowLayout()
+        let flowLayout = CHTCollectionViewWaterfallLayout()
         flowLayout.minimumInteritemSpacing = 0
-        flowLayout.minimumLineSpacing = 0
+        flowLayout.minimumColumnSpacing = 0
         flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         super.init(collectionViewLayout: flowLayout)
+        
+        navigationItem.title = "Puppies"
     }
 
     required convenience init(coder aDecoder: NSCoder) {
@@ -30,6 +32,8 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
         super.viewDidLoad()
         
         collectionView.registerClass(PuppyCell.self, forCellWithReuseIdentifier: puppyReuseID)
+        
+        self.navigationController?.scrollNavigationBar.scrollView = collectionView
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -53,6 +57,13 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(puppyReuseID, forIndexPath: indexPath) as PuppyCell
         cell.gif = model[indexPath.row]
         return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: UICollectionViewLayout!, columnCountForSection section: Int) -> Int {
+        if let firstGif = model.first {
+            return Int(round(view.bounds.width / firstGif.width))
+        }
+        return 1
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

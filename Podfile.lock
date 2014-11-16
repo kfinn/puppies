@@ -1,18 +1,21 @@
 PODS:
+  - CHTCollectionViewWaterfallLayout (0.8)
   - FLAnimatedImage (1.0.4)
-  - KTCenterFlowLayout (0.0.1)
+  - GTScrollNavigationBar (0.1.2)
   - Mantle (1.5.1):
     - Mantle/extobjc
   - Mantle/extobjc (1.5.1)
 
 DEPENDENCIES:
+  - CHTCollectionViewWaterfallLayout (~> 0.8)
   - FLAnimatedImage (~> 1.0)
-  - KTCenterFlowLayout (~> 0.0)
+  - GTScrollNavigationBar (~> 0.1)
   - Mantle (~> 1.5)
 
 SPEC CHECKSUMS:
+  CHTCollectionViewWaterfallLayout: 14b7950cbe45ae9297e7759148d69b022bac047d
   FLAnimatedImage: b778ff1222a5d6902fa5016fb870aeeb5ba23e28
-  KTCenterFlowLayout: 904d7e0fb4cc292b1a8c1ccef0248c6b2fe58e14
+  GTScrollNavigationBar: 837e4481076638eabafd64b94546a1b4c05058ca
   Mantle: d7c5ac734579ec751c58fecbf56189853056c58c
 
 COCOAPODS: 0.34.4

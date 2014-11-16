@@ -4,4 +4,5 @@
 
 #import "Gif.h"
 #import <FLAnimatedImage/FLAnimatedImage.h>
-#import <KTCenterFlowLayout/KTCenterFlowLayout.h>
+#import <CHTCollectionViewWaterfallLayout/CHTCollectionViewWaterfallLayout.h>
+#import <GTScrollNavigationBar/GTScrollNavigationBar.h>
