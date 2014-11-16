@@ -39,6 +39,7 @@ class ViewController: UICollectionViewController, CHTCollectionViewDelegateWater
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView.backgroundColor = UIColor.lightGrayColor()
         collectionView.registerClass(PuppyCell.self, forCellWithReuseIdentifier: puppyReuseID)
     }
     
@@ -50,6 +51,7 @@ class ViewController: UICollectionViewController, CHTCollectionViewDelegateWater
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(puppyReuseID, forIndexPath: indexPath) as PuppyCell
         cell.gif = gifStore.gifs[indexPath.item]
         return cell

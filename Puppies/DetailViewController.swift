@@ -36,22 +36,24 @@ class DetailViewController: UIViewController, ZLSwipeableViewDataSource, ZLSwipe
     }
     
     func nextViewForSwipeableView(swipeableView: ZLSwipeableView!) -> UIView! {
+        
+        let topMargin = self.topLayoutGuide.length + 10
         let gif = gifStore.gifs[currentIndex]
-        let view = GifView(frame: CGRect(origin: CGPointZero, size: CGSize(width: gif.width, height: gif.height)))
+        let view = DetailCard(frame: CGRectMake(10, topMargin, self.view.bounds.width - 20, self.view.bounds.height - topMargin - 10))
         view.gif = gifStore.gifs[currentIndex]
         currentIndex++
         return view
     }
     
     func swipeableView(swipeableView: ZLSwipeableView!, didSwipeRight view: UIView!) {
-        if let gifView = view as? GifView {
+        if let gifView = view as? DetailCard {
             gifStore.upVote(gifView.gif!)
         }
         maybeFetchMore()
     }
     
     func swipeableView(swipeableView: ZLSwipeableView!, didSwipeLeft view: UIView!) {
-        if let gifView = view as? GifView {
+        if let gifView = view as? DetailCard {
             gifStore.downVote(gifView.gif!)
         }
         maybeFetchMore()

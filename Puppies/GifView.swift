@@ -37,6 +37,7 @@ class GifView: UIView {
     let gifView: FLAnimatedImageView = {
         let imageView = FLAnimatedImageView()
         imageView.autoresizingMask = .FlexibleHeight | .FlexibleWidth
+        imageView.contentMode = .ScaleAspectFit
         return imageView
     }()
     
@@ -51,5 +52,4 @@ class GifView: UIView {
         gifView.frame = bounds;
         self.addSubview(gifView)
     }
-
 }

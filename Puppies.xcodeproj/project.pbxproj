@@ -18,6 +18,7 @@
 		DCD1E1FF1A19438D0006687A /* GifStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD1E1FE1A19438D0006687A /* GifStore.swift */; };
 		DCD1E2011A1956760006687A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD1E2001A1956760006687A /* DetailViewController.swift */; };
 		DCD1E2031A19582C0006687A /* GifView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD1E2021A19582C0006687A /* GifView.swift */; };
+		DCD1E2061A19613A0006687A /* DetailCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD1E2051A19613A0006687A /* DetailCard.swift */; };
 		E9836CFA7BB1FB14A77304BE /* libPods-Puppies.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 886FDE99FF610E7B8BF449F4 /* libPods-Puppies.a */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		DCD1E1FE1A19438D0006687A /* GifStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GifStore.swift; sourceTree = "<group>"; };
 		DCD1E2001A1956760006687A /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		DCD1E2021A19582C0006687A /* GifView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GifView.swift; sourceTree = "<group>"; };
+		DCD1E2051A19613A0006687A /* DetailCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,10 +107,9 @@
 			isa = PBXGroup;
 			children = (
 				DCD1E1D51A18E0850006687A /* AppDelegate.swift */,
-				DCD1E1D71A18E0850006687A /* ViewController.swift */,
-				DCD1E2001A1956760006687A /* DetailViewController.swift */,
+				DCD1E2041A1961270006687A /* Collection */,
+				DCD1E2071A19613E0006687A /* Detail */,
 				DCD1E1FE1A19438D0006687A /* GifStore.swift */,
-				DCD1E1F61A18E6A80006687A /* PuppyCell.swift */,
 				DCD1E2021A19582C0006687A /* GifView.swift */,
 				DCD1E1DC1A18E0860006687A /* Images.xcassets */,
 				DCD1E1DE1A18E0860006687A /* LaunchScreen.xib */,
@@ -144,6 +145,24 @@
 				DCD1E1EA1A18E0860006687A /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DCD1E2041A1961270006687A /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				DCD1E1D71A18E0850006687A /* ViewController.swift */,
+				DCD1E1F61A18E6A80006687A /* PuppyCell.swift */,
+			);
+			name = Collection;
+			sourceTree = "<group>";
+		};
+		DCD1E2071A19613E0006687A /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				DCD1E2001A1956760006687A /* DetailViewController.swift */,
+				DCD1E2051A19613A0006687A /* DetailCard.swift */,
+			);
+			name = Detail;
 			sourceTree = "<group>";
 		};
 		FA919804A2884EA1DF557E52 /* Pods */ = {
@@ -291,6 +310,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCD1E2061A19613A0006687A /* DetailCard.swift in Sources */,
 				DCD1E1F71A18E6A80006687A /* PuppyCell.swift in Sources */,
 				DCD1E1D81A18E0850006687A /* ViewController.swift in Sources */,
 				DCD1E1FF1A19438D0006687A /* GifStore.swift in Sources */,
