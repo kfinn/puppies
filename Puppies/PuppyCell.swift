@@ -8,20 +8,28 @@
 
 import UIKit
 
+let animatedImageCache = NSCache()
+
 class PuppyCell: UICollectionViewCell {
     
     var gif : Gif? {
         didSet {
             self.gifView.animatedImage = nil;
             self.gifView.image = UIImage(named: "puppy.jpg");
-            if gif != nil {
-                let requestGif = gif
-                NSURLSession.sharedSession().dataTaskWithURL(requestGif!.url) {
-                    (data, response, error) in
-                    if requestGif == self.gif {
-                        self.gifView.animatedImage = FLAnimatedImage(animatedGIFData: data)
-                    }
-                }.resume()
+            if let requestGif = gif? {
+                if let cached = animatedImageCache.objectForKey(gif!) as? FLAnimatedImage {
+                    self.gifView.animatedImage = cached
+                } else {
+                    let requestGif = gif
+                    NSURLSession.sharedSession().dataTaskWithURL(requestGif!.url) {
+                        (data, response, error) in
+                        let animatedImage = FLAnimatedImage(animatedGIFData: data)
+                        animatedImageCache.setObject(animatedImage, forKey: requestGif!)
+                        if requestGif == self.gif {
+                            self.gifView.animatedImage = animatedImage
+                        }
+                    }.resume()
+                }
             }
         }
     }
