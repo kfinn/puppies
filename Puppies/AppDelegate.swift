@@ -13,8 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     let vc : UIViewController = {
-        let navigationController = UINavigationController(navigationBarClass: GTScrollNavigationBar.self, toolbarClass: nil)
-        navigationController.viewControllers = [ViewController()]
+        let navigationController = UINavigationController(rootViewController: ViewController())
         return navigationController
     }()
 

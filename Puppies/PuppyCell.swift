@@ -8,49 +8,27 @@
 
 import UIKit
 
-let animatedImageCache = NSCache()
-
 class PuppyCell: UICollectionViewCell {
+    
+    let gifView : GifView
     
     var gif : Gif? {
         didSet {
-            self.gifView.animatedImage = nil;
-            self.gifView.image = UIImage(named: "puppy.jpg");
-            if let requestGif = gif? {
-                if let cached = animatedImageCache.objectForKey(gif!) as? FLAnimatedImage {
-                    self.gifView.animatedImage = cached
-                } else {
-                    let requestGif = gif
-                    NSURLSession.sharedSession().dataTaskWithURL(requestGif!.url) {
-                        (data, response, error) in
-                        let animatedImage = FLAnimatedImage(animatedGIFData: data)
-                        animatedImageCache.setObject(animatedImage, forKey: requestGif!)
-                        if requestGif == self.gif {
-                            self.gifView.animatedImage = animatedImage
-                        }
-                    }.resume()
-                }
-            }
+            gifView.gif = gif
         }
     }
     
-    let gifView: FLAnimatedImageView = {
-        let imageView = FLAnimatedImageView()
-        imageView.autoresizingMask = .FlexibleHeight | .FlexibleWidth
-        return imageView
-    }()
-    
-    var hasConstraints = false
-    
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        gifView.frame = bounds;
-        self.contentView.addSubview(gifView)
+    override init(frame: CGRect) {
+        gifView = GifView(frame: frame)
+        super.init(frame: frame)
+        gifView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+        contentView.addSubview(gifView)
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        gifView.frame = bounds;
-        self.contentView.addSubview(gifView)
+    required init(coder aDecoder: NSCoder) {
+        gifView = GifView(coder: aDecoder)
+        super.init(coder: aDecoder)
+        gifView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+        contentView.addSubview(gifView)
     }
 }

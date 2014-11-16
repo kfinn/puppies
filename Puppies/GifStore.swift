@@ -20,6 +20,42 @@ class GifStore : NSObject {
     private var tagWeights = [String : Int]()
     private var totalWeight = 0
     
+    required init(tag: String) {
+        self.tag = tag
+        super.init()
+    }
+    
+    convenience override init() {
+        self.init(tag: "puppy")
+    }
+}
+
+extension GifStore {
+    
+    func upVote(gif: Gif) {
+        vote(gif, weight: 1)
+    }
+    
+    func downVote(gif: Gif) {
+        vote(gif, weight: -1)
+    }
+    
+    private func vote(gif: Gif, weight: Int) {
+        if let tags = gif.tags.allObjects as? [String] {
+            for tag in tags {
+                if let currentVotes = tagWeights[tag] {
+                    tagWeights[tag] = currentVotes + weight
+                } else {
+                    tagWeights[tag] = weight
+                }
+                totalWeight += weight
+            }
+        }
+    }
+}
+
+extension GifStore {
+    
     private var randomTag : String {
         get {
             if totalWeight != 0 {
@@ -36,24 +72,14 @@ class GifStore : NSObject {
         }
     }
     
-    required init(tag: String) {
-        self.tag = tag
-        super.init()
-    }
-    
-    convenience override init() {
-        self.init(tag: "puppy")
-    }
-    
     func preload() {
         for _ in 0 ... 25 {
-            NSLog("calling fetchGif")
             fetchGif()
         }
     }
     
     private func fetchGif() {
-        let tag = randomTag;
+        let tag = randomTag .stringByReplacingOccurrencesOfString(" ", withString: "-", options: .allZeros, range:nil);
         let url = NSURL(string: "http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=\(tag)")
         NSURLSession.sharedSession().dataTaskWithURL(url!) {
             (data, _, _) in

@@ -16,6 +16,8 @@
 		DCD1E1FB1A18E6FB0006687A /* Gif.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD1E1FA1A18E6FB0006687A /* Gif.m */; };
 		DCD1E1FD1A193B1D0006687A /* puppy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DCD1E1FC1A193B1D0006687A /* puppy.jpg */; };
 		DCD1E1FF1A19438D0006687A /* GifStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD1E1FE1A19438D0006687A /* GifStore.swift */; };
+		DCD1E2011A1956760006687A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD1E2001A1956760006687A /* DetailViewController.swift */; };
+		DCD1E2031A19582C0006687A /* GifView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD1E2021A19582C0006687A /* GifView.swift */; };
 		E9836CFA7BB1FB14A77304BE /* libPods-Puppies.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 886FDE99FF610E7B8BF449F4 /* libPods-Puppies.a */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +50,8 @@
 		DCD1E1FA1A18E6FB0006687A /* Gif.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gif.m; sourceTree = "<group>"; };
 		DCD1E1FC1A193B1D0006687A /* puppy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = puppy.jpg; sourceTree = "<group>"; };
 		DCD1E1FE1A19438D0006687A /* GifStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GifStore.swift; sourceTree = "<group>"; };
+		DCD1E2001A1956760006687A /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		DCD1E2021A19582C0006687A /* GifView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GifView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,8 +106,10 @@
 			children = (
 				DCD1E1D51A18E0850006687A /* AppDelegate.swift */,
 				DCD1E1D71A18E0850006687A /* ViewController.swift */,
+				DCD1E2001A1956760006687A /* DetailViewController.swift */,
 				DCD1E1FE1A19438D0006687A /* GifStore.swift */,
 				DCD1E1F61A18E6A80006687A /* PuppyCell.swift */,
+				DCD1E2021A19582C0006687A /* GifView.swift */,
 				DCD1E1DC1A18E0860006687A /* Images.xcassets */,
 				DCD1E1DE1A18E0860006687A /* LaunchScreen.xib */,
 				DCD1E1D31A18E0850006687A /* Supporting Files */,
@@ -288,6 +294,8 @@
 				DCD1E1F71A18E6A80006687A /* PuppyCell.swift in Sources */,
 				DCD1E1D81A18E0850006687A /* ViewController.swift in Sources */,
 				DCD1E1FF1A19438D0006687A /* GifStore.swift in Sources */,
+				DCD1E2011A1956760006687A /* DetailViewController.swift in Sources */,
+				DCD1E2031A19582C0006687A /* GifView.swift in Sources */,
 				DCD1E1FB1A18E6FB0006687A /* Gif.m in Sources */,
 				DCD1E1D61A18E0850006687A /* AppDelegate.swift in Sources */,
 			);

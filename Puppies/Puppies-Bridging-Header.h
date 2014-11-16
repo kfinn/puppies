@@ -6,3 +6,4 @@
 #import <FLAnimatedImage/FLAnimatedImage.h>
 #import <CHTCollectionViewWaterfallLayout/CHTCollectionViewWaterfallLayout.h>
 #import <GTScrollNavigationBar/GTScrollNavigationBar.h>
+#import <ZLSwipeableView/ZLSwipeableView.h>

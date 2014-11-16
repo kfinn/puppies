@@ -1,21 +1,21 @@
 PODS:
   - CHTCollectionViewWaterfallLayout (0.8)
   - FLAnimatedImage (1.0.4)
-  - GTScrollNavigationBar (0.1.2)
   - Mantle (1.5.1):
     - Mantle/extobjc
   - Mantle/extobjc (1.5.1)
+  - ZLSwipeableView (0.0.5)
 
 DEPENDENCIES:
   - CHTCollectionViewWaterfallLayout (~> 0.8)
   - FLAnimatedImage (~> 1.0)
-  - GTScrollNavigationBar (~> 0.1)
   - Mantle (~> 1.5)
+  - ZLSwipeableView (~> 0.0)
 
 SPEC CHECKSUMS:
   CHTCollectionViewWaterfallLayout: 14b7950cbe45ae9297e7759148d69b022bac047d
   FLAnimatedImage: b778ff1222a5d6902fa5016fb870aeeb5ba23e28
-  GTScrollNavigationBar: 837e4481076638eabafd64b94546a1b4c05058ca
   Mantle: d7c5ac734579ec751c58fecbf56189853056c58c
+  ZLSwipeableView: d54858e02bbad02e5fb7b3489478d7f92c0628ce
 
 COCOAPODS: 0.34.4

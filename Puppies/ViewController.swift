@@ -22,7 +22,6 @@ class ViewController: UICollectionViewController, CHTCollectionViewDelegateWater
         flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         super.init(collectionViewLayout: flowLayout)
         navigationItem.title = "Puppies"
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"handleGifAdded:", name: GifStoreAddedGifNotification, object: gifStore)
     }
     
@@ -41,12 +40,10 @@ class ViewController: UICollectionViewController, CHTCollectionViewDelegateWater
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.registerClass(PuppyCell.self, forCellWithReuseIdentifier: puppyReuseID)
-        self.navigationController?.scrollNavigationBar.scrollView = collectionView
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         if gifStore.gifs.isEmpty {
             gifStore.preload()
         }
@@ -71,12 +68,16 @@ class ViewController: UICollectionViewController, CHTCollectionViewDelegateWater
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        
         let gif = gifStore.gifs[indexPath.item]
-        return CGSize(width: gif.width, height: gif.height)
+        return CGSize(width: columnWidth, height: (columnWidth / gif.width) * gif.height)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
+    }
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let vc = DetailViewController(gifStore: gifStore, fromIndex: indexPath.item)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
