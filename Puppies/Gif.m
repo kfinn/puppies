@@ -42,4 +42,10 @@ static NSString *const kURLTransformer = @"kURLTransformer";
     return [NSValueTransformer valueTransformerForName:kURLTransformer];
 }
 
++ (instancetype)fromData:(NSData *)data {
+    NSDictionary *payloadJson = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    NSDictionary *gifJson = payloadJson[@"data"];
+    return [MTLJSONAdapter modelOfClass:self fromJSONDictionary:gifJson error:nil];
+}
+
 @end

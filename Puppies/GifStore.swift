@@ -16,6 +16,7 @@ class GifStore : NSObject {
     let tag: String
     var gifs = [Gif]()
     var gifsById = [String : Gif]()
+    var requests = [NSURLSessionDataTask]()
     
     private var tagWeights = [String : Int]()
     private var totalWeight = 0
@@ -79,24 +80,38 @@ extension GifStore {
     }
     
     private func fetchGif() {
-        let tag = randomTag .stringByReplacingOccurrencesOfString(" ", withString: "-", options: .allZeros, range:nil);
+        let tag = randomTag.stringByReplacingOccurrencesOfString(" ", withString: "-", options: .allZeros, range:nil);
         let url = NSURL(string: "http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=\(tag)")
-        NSURLSession.sharedSession().dataTaskWithURL(url!) {
-            (data, _, _) in
-            if let payloadJson = NSJSONSerialization.JSONObjectWithData(data, options: .allZeros, error: nil) as? [NSObject : [NSObject : AnyObject]] {
-                if let gifJson = payloadJson["data"] {
-                    if let gif = MTLJSONAdapter.modelOfClass(Gif.self, fromJSONDictionary: gifJson, error: nil) as? Gif {
-                        if !(self.gifsById[gif.id] != nil) {
-                            self.gifsById[gif.id] = gif
-                            self.gifs.append(gif)
-                            NSNotificationCenter.defaultCenter().postNotificationName(GifStoreAddedGifNotification, object: self, userInfo: [GifStoreAddedGifNotificationIndexKey : self.gifs.count - 1])
+        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {
+            (data, response, error) in
+            if let gif = Gif.fromData(data) {
+                if !(self.gifsById[gif.id] != nil) {
+                    self.gifsById[gif.id] = gif
+                    self.gifs.append(gif)
+                    NSNotificationCenter.defaultCenter().postNotificationName(GifStoreAddedGifNotification, object: self, userInfo: [GifStoreAddedGifNotificationIndexKey : self.gifs.count - 1])
+                } else {
+                    // try again for a new one
+                    self.fetchGif()
+                }
+            } else {
+                for request in self.requests {
+                    request.cancel()
+                }
+                self.requests = []
+                if let errorJson = NSJSONSerialization.JSONObjectWithData(data, options: .allZeros, error: nil) as? [String : AnyObject] {
+                    if let meta = errorJson["meta"] as? [String : AnyObject] {
+                        if let msg = meta["msg"] as? String {
+                            UIAlertView(title: "Giphy Error", message: msg, delegate: nil, cancelButtonTitle: "OK").show()
+                            return
                         }
                     }
                 }
-            } else {
-                // try again
-                self.fetchGif()
+                if !(error.domain == NSURLErrorDomain && error.code == NSURLErrorCancelled) {
+                    UIAlertView(title: "Unexpected Error", message: error.localizedDescription, delegate: nil, cancelButtonTitle: "OK").show()
+                }
             }
-        }.resume()
+        }
+        requests.append(task)
+        task.resume()
     }
 }

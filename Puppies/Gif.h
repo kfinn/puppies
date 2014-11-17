@@ -18,4 +18,6 @@
 @property (nonatomic) CGFloat width;
 @property (nonatomic) CGFloat height;
 
++ (instancetype)fromData:(NSData *)data;
+
 @end

@@ -10,7 +10,11 @@ import UIKit
 
 class PuppyCell: UICollectionViewCell {
     
-    let gifView : GifView
+    let gifView : GifView = {
+        let gifView = GifView(frame: CGRectZero)
+        gifView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+        return gifView
+    }()
     
     var gif : Gif? {
         didSet {
@@ -19,16 +23,14 @@ class PuppyCell: UICollectionViewCell {
     }
     
     override init(frame: CGRect) {
-        gifView = GifView(frame: frame)
         super.init(frame: frame)
-        gifView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+        gifView.frame = contentView.bounds
         contentView.addSubview(gifView)
     }
     
     required init(coder aDecoder: NSCoder) {
-        gifView = GifView(coder: aDecoder)
         super.init(coder: aDecoder)
-        gifView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+        gifView.frame = contentView.bounds
         contentView.addSubview(gifView)
     }
 }

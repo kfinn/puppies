@@ -36,6 +36,8 @@ class DetailCard: UIView {
         super.init(frame: frame)
         
         self.layer.cornerRadius = 5
+        self.layer.shadowRadius = 3;
+        self.layer.shadowColor = UIColor.blackColor().CGColor
         self.backgroundColor = UIColor.whiteColor()
         
         let tagsFrame = CGRectMake(10, bounds.height - 50, bounds.width - 20, 40)
