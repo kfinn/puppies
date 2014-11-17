@@ -10,7 +10,7 @@ import UIKit
 
 class DetailViewController: UIViewController, ZLSwipeableViewDataSource, ZLSwipeableViewDelegate {
     
-    let swipeView = ZLSwipeableView()
+    lazy var swipeView = ZLSwipeableView()
 
     let gifStore : GifStore
     var currentIndex : Int
@@ -19,8 +19,6 @@ class DetailViewController: UIViewController, ZLSwipeableViewDataSource, ZLSwipe
         self.gifStore = gifStore
         self.currentIndex = fromIndex
         super.init(nibName: nil, bundle: nil)
-        swipeView.dataSource = self
-        swipeView.delegate = self
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -30,19 +28,25 @@ class DetailViewController: UIViewController, ZLSwipeableViewDataSource, ZLSwipe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = UIColor.blackColor()
+        
         swipeView.frame = view.bounds
         swipeView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
-        self.view.addSubview(swipeView)
+        view.addSubview(swipeView)
+        swipeView.dataSource = self
+        swipeView.delegate = self
     }
     
     func nextViewForSwipeableView(swipeableView: ZLSwipeableView!) -> UIView! {
         
-        let topMargin = self.topLayoutGuide.length + 10
-        let gif = gifStore.gifs[currentIndex]
-        let view = DetailCard(frame: CGRectMake(10, topMargin, self.view.bounds.width - 20, self.view.bounds.height - topMargin - 10))
-        view.gif = gifStore.gifs[currentIndex]
+        let card = DetailCard(frame: view.bounds)
+        card.gif = gifStore.gifs[currentIndex]
+        card.setTranslatesAutoresizingMaskIntoConstraints(false)
+        card.updateConstraintsIfNeeded()
+        card.layoutIfNeeded()
+        card.center = swipeableView.swipeableViewsCenter
         currentIndex++
-        return view
+        return card
     }
     
     func swipeableView(swipeableView: ZLSwipeableView!, didSwipeRight view: UIView!) {
@@ -60,7 +64,7 @@ class DetailViewController: UIViewController, ZLSwipeableViewDataSource, ZLSwipe
     }
     
     private func maybeFetchMore() {
-        if gifStore.gifs.count - currentIndex < 25 {
+        if gifStore.gifs.count - currentIndex < 5 {
             gifStore.preload()
         }
     }

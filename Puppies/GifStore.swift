@@ -59,7 +59,7 @@ extension GifStore {
     
     private var randomTag : String {
         get {
-            if totalWeight != 0 {
+            if totalWeight > 0 {
                 let randomIndex = random() % totalWeight
                 var count = 0
                 for (tag, weight) in tagWeights {
@@ -74,7 +74,7 @@ extension GifStore {
     }
     
     func preload() {
-        for _ in 0 ... 25 {
+        for _ in 0 ... 10 {
             fetchGif()
         }
     }

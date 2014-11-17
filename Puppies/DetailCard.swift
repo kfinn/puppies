@@ -12,14 +12,14 @@ class DetailCard: UIView {
     
     private let tagsLabel : UILabel = {
         let tags = UILabel()
-        tags.autoresizingMask = .FlexibleTopMargin | .FlexibleWidth
         tags.numberOfLines = 0
+        tags.setTranslatesAutoresizingMaskIntoConstraints(false)
         return tags
     }()
     
     private let gifView : GifView = {
         let gifView = GifView(frame: CGRectZero)
-        gifView.autoresizingMask = .FlexibleTopMargin | .FlexibleBottomMargin | .FlexibleRightMargin | .FlexibleLeftMargin
+        gifView.setTranslatesAutoresizingMaskIntoConstraints(false)
         return gifView
     }()
     
@@ -32,24 +32,34 @@ class DetailCard: UIView {
         }
     }
     
+    var hasConstraints = false
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.layer.cornerRadius = 5
-        self.layer.shadowRadius = 3;
-        self.layer.shadowColor = UIColor.blackColor().CGColor
-        self.backgroundColor = UIColor.whiteColor()
+        layer.cornerRadius = 10
+        layer.shadowOpacity = 0.5
+        backgroundColor = UIColor.whiteColor()
+        setTranslatesAutoresizingMaskIntoConstraints(false)
         
-        let tagsFrame = CGRectMake(10, bounds.height - 50, bounds.width - 20, 40)
-        tagsLabel.frame = tagsFrame
         addSubview(tagsLabel)
-        
-        let gifFrame = CGRectMake(10, 10, bounds.width - 20, bounds.height - 60)
-        gifView.frame = gifFrame
         addSubview(gifView)
+        
+        self.setNeedsUpdateConstraints()
     }
     
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func updateConstraints() {
+        if !hasConstraints {
+            hasConstraints = true
+            self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-[gif]-|", options: .allZeros, metrics: nil, views: ["gif": gifView]))
+            self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-[label]-|", options: .allZeros, metrics: nil, views: ["label": tagsLabel]))
+            self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[gif]-[label]-|", options: .allZeros, metrics: nil, views: ["gif": gifView, "label": tagsLabel]))
+        }
+        
+        super.updateConstraints()
     }
 }
