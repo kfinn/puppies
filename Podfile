@@ -9,6 +9,12 @@ target 'Puppies' do
     
 end
 
+target 'Puppies WatchKit Extension' do
+   
+    pod 'UIImage+animatedGif', '~> 0.1'
+    
+end
+
 target 'PuppiesTests' do
 
 end

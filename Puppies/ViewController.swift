@@ -26,7 +26,7 @@ class ViewController: UICollectionViewController, CHTCollectionViewDelegateWater
     }
     
     func handleGifAdded(notification: NSNotification) {
-        collectionView.reloadData()
+        collectionView?.reloadData()
     }
     
     deinit {
@@ -39,8 +39,8 @@ class ViewController: UICollectionViewController, CHTCollectionViewDelegateWater
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.backgroundColor = UIColor.lightGrayColor()
-        collectionView.registerClass(PuppyCell.self, forCellWithReuseIdentifier: puppyReuseID)
+        collectionView!.backgroundColor = UIColor.lightGrayColor()
+        collectionView!.registerClass(PuppyCell.self, forCellWithReuseIdentifier: puppyReuseID)
     }
     
     override func viewWillAppear(animated: Bool) {
